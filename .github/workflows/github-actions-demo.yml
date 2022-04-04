@@ -1,0 +1,20 @@
+name: Wersja Docker i Python
+on: [push]
+jobs:
+   check-python-docker-version:
+      runs-on: ubuntu-latest
+      steps:
+         - run: docker version
+         - run: python version
+         - name: wersja pythondocker
+   test-pylint:
+      runs-on: ubuntu-latest
+      steps:
+         - run: python -m pylint app.py
+         - name: test pylint
+   image-build:
+      runs-on: ubuntu-latest
+      steps:
+         - run: docker run -d -p 5000:5000 test-flask-app
+         - name: budowa obrazu
+
